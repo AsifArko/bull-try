@@ -1,0 +1,23 @@
+{
+  "name": "bull-try",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bull": "^3.12.1",
+    "express": "^4.17.1",
+    "foreman": "^3.0.1",
+    "math": "0.0.3",
+    "redis": "^2.8.0",
+    "throng": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bull": "^3.12.0"
+  }
+}
