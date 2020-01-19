@@ -15,10 +15,10 @@ function start() {
 
     let workQueue = new Queue('work', REDIS_URL);
 
-    workQueue.process(maxJobsPerWorker, async (job) => {
+    let promise = workQueue.process(maxJobsPerWorker, async (job) => {
         let progress = 0;
 
-        if (Math.random() < 0.05) {
+        if (Math.random() < 0.35) {
             throw new Error("This job failed!")
         }
 

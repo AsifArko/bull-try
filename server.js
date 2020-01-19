@@ -36,8 +36,8 @@ app.get('/jobs', async (req, res) => {
     res.json({jobs});
 });
 
-workQueue.on('global:completed', (id, result) => {
-    console.log(`Job ${id} completed with result ${result}`)
+workQueue.on('global:completed', (jobId, result) => {
+    console.log(`Job ${jobId} completed with result ${result}`);
 });
 
 app.listen(PORT, () => console.log("Server is Running at " + "http://127.0.0.1:5001"));
