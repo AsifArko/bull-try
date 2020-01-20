@@ -1,9 +1,9 @@
 let throng = require('throng');
 let Queue = require("bull");
 
-let REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
+let REDIS_URI = 'redis://127.0.0.1:6379';
 
-let workers = process.env.WEB_CONCURRENCY || 2;
+let workers = 2;
 
 let maxJobsPerWorker = 50;
 
@@ -12,9 +12,7 @@ function sleep(ms) {
 }
 
 function start() {
-
-    let workQueue = new Queue('work', REDIS_URL);
-
+    let workQueue = new Queue('work', REDIS_URI);
     let promise = workQueue.process(maxJobsPerWorker, async (job) => {
         let progress = 0;
 
@@ -25,10 +23,11 @@ function start() {
         while (progress < 100) {
             await sleep(50);
             progress += 1;
+            console.log(`JOB : ${job.id} progress : ${progress}`);
             job.progress(progress)
         }
-
-        return { value: "This will be stored" };
+        return {value: `Job ${job.id} will be stored`};
     });
 }
-throng({ workers, start });
+
+throng({workers, start});
